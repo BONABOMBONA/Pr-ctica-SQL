@@ -1,127 +1,60 @@
-PRACTICA: Sistema de Tripulaciones y Aventuras en One Piece
+☠️ PRÁCTICA: Sistema de Tripulaciones y Aventuras en One Piece
 
-Contexto:
+Base de Datos Relacionales — SQLite + Python + pandas
+Diseño, implementación y análisis de una base de datos inspirada en el universo de One Piece.
+
+
+🌊 Contexto
 La Marina quiere analizar a los piratas del mundo: sus tripulaciones, recompensas, islas visitadas y combates para identificar amenazas.
 
-Objetivo:
-- Diseñar un esquema relacional
-- Crear tablas con restricciones
-- Insertar datos coherentes
-- Consultar la base de datos desde Python
-- Realizar un análisis básico de datos
+🎯 Objetivos
 
-Parte 1: Diseño de la base de datos
+Diseñar un esquema relacional
+Crear tablas con restricciones
+Insertar datos coherentes
+Consultar la base de datos desde Python
+Realizar un análisis básico de datos
 
-Tablas a crear:
 
-1. tripulaciones
-Columnas:
-- id
-- nombre
-- barco
-Ejemplo:
-1, Sombrero de Paja, Going Merry
+🗂️ Estructura de la Base de Datos
+Tablas
+TablaDescripcióntripulacionesNombre y barco de cada tripulaciónpiratasDatos del pirata y su tripulaciónislasIslas del mundo y su marviajesRegistro de qué pirata visitó qué islacombatesEnfrentamientos entre piratas y ganadorrecompensasHistorial de recompensas por pirata
+Relaciones
+piratas.tripulacion_id  ──►  tripulaciones.id
+viajes.pirata_id        ──►  piratas.id
+viajes.isla_id          ──►  islas.id
+combates.pirata1_id     ──►  piratas.id
+combates.pirata2_id     ──►  piratas.id
+combates.ganador_id     ──►  piratas.id
+recompensas.pirata_id   ──►  piratas.id
+Datos insertados
+TablaMínimo requeridoInsertadosTripulaciones3✅ 3Piratas10✅ 10Islas5✅ 5Viajes15✅ 15Combates10✅ 10Recompensas10✅ 10
 
-2. piratas
-Columnas:
-- id
-- nombre
-- edad
-- recompensa
-- tripulacion_id
-Ejemplo:
-1, Monkey D. Luffy, 19, 1500000000, 1
+📋 Consultas implementadas
 
-3. islas
-Columnas:
-- id
-- nombre
-- mar
-Ejemplo:
-1, Dressrosa, Grand Line
+Piratas y su tripulación
+Pirata con mayor recompensa
+Número de combates ganados por pirata
+Isla más visitada
+Historial de recompensas por pirata
 
-4. viajes
-Columnas:
-- id
-- pirata_id
-- isla_id
-- fecha
-Ejemplo:
-1, 1, 1, 2023-01-10
 
-5. combates
-Columnas:
-- id
-- pirata1_id
-- pirata2_id
-- ganador_id
-- fecha
-Ejemplo:
-1, 1, 2, 1, 2023-02-01
+📊 Análisis (pandas)
 
-6. recompensas
-Columnas:
-- id
-- pirata_id
-- monto
-- fecha
-Ejemplo:
-1, 1, 500000000, 2020-01-01
+Promedio de recompensa por tripulación
+Ranking compuesto de piratas (recompensa 60% · victorias 30% · viajes 10%)
 
-Parte 2: Relaciones
 
-- piratas.tripulacion_id -> tripulaciones.id
-- viajes.pirata_id -> piratas.id
-- viajes.isla_id -> islas.id
-- combates.pirata1_id -> piratas.id
-- combates.pirata2_id -> piratas.id
-- combates.ganador_id -> piratas.id
-- recompensas.pirata_id -> piratas.id
+📁 Archivos del repositorio
+ArchivoDescripciónonepiece_schema.sqlDDL completo: creación de tablas e inserción de datosonepiece_practica.pyScript Python con consultas y análisisresultados_consultas.txtOutput de las 5 consultas SQLresultados_analisis.txtOutput del análisis con pandaspractica_onepiece.docxDocumento de entrega completo
 
-Parte 3: Creación de la base de datos
+▶️ Cómo ejecutar
+bash# Instalar dependencia
+pip install pandas
 
-Requisitos:
-- Usar SQLite o similar
-- Definir PRIMARY KEY y FOREIGN KEY
-- Crear al menos:
-  - 3 tripulaciones
-  - 10 piratas
-  - 5 islas
-  - 15 viajes
-  - 10 combates
-  - 10 recompensas
+# Ejecutar (crea la BD automáticamente y muestra todos los resultados)
+python onepiece_practica.py
 
-Parte 4: Inserción de datos
-
-- Generar datos coherentes
-- Mantener integridad referencial
-
-Parte 5: Uso en Python
-
-- Conectar a la base de datos
-- Ejecutar consultas SQL
-- Usar pandas para análisis
-
-Parte 6: Consultas requeridas
-
-1. Piratas y su tripulación
-2. Pirata con mayor recompensa
-3. Numero de combates ganados por pirata
-4. Isla más visitada
-5. Historial de recompensas por pirata
-
-Parte 7: Análisis
-
-- Promedio de recompensa por tripulación
-- Ranking de piratas
-
-Entregables:
-
-1. Script SQL
-2. Script o notebook en Python
-3. Resultados de consultas
-4. Resultados del Análisis
-
-EQUIPO:
-Garcia Garcia
-Soria Lòpez Dana Paola
+👥 Equipo
+Garcia Garcia Soria López Dana Paola
+Diseño de Bases de Datos — 2026-2
