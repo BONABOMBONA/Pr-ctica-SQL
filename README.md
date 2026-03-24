@@ -1,25 +1,42 @@
-☠️ PRÁCTICA: Sistema de Tripulaciones y Aventuras en One Piece
+# ☠️ PRÁCTICA: Sistema de Tripulaciones y Aventuras en One Piece
 
-Base de Datos Relacionales — SQLite + Python + pandas
-Diseño, implementación y análisis de una base de datos inspirada en el universo de One Piece.
+> **Base de Datos Relacionales — SQLite + Python + pandas**  
+> Diseño, implementación y análisis de una base de datos inspirada en el universo de One Piece.
 
+---
 
-🌊 Contexto
-La Marina quiere analizar a los piratas del mundo: sus tripulaciones, recompensas, islas visitadas y combates para identificar amenazas.
+## 🌊 Contexto
 
-🎯 Objetivos
+La Marina quiere analizar a los piratas del mundo: sus tripulaciones, recompensas, islas visitadas y combates para **identificar amenazas**.
 
-Diseñar un esquema relacional
-Crear tablas con restricciones
-Insertar datos coherentes
-Consultar la base de datos desde Python
-Realizar un análisis básico de datos
+---
 
+## 🎯 Objetivos
 
-🗂️ Estructura de la Base de Datos
-Tablas
-TablaDescripcióntripulacionesNombre y barco de cada tripulaciónpiratasDatos del pirata y su tripulaciónislasIslas del mundo y su marviajesRegistro de qué pirata visitó qué islacombatesEnfrentamientos entre piratas y ganadorrecompensasHistorial de recompensas por pirata
-Relaciones
+- Diseñar un esquema relacional
+- Crear tablas con restricciones
+- Insertar datos coherentes
+- Consultar la base de datos desde Python
+- Realizar un análisis básico de datos
+
+---
+
+## 🗂️ Estructura de la Base de Datos
+
+### Tablas
+
+| Tabla | Descripción |
+|---|---|
+| `tripulaciones` | Nombre y barco de cada tripulación |
+| `piratas` | Datos del pirata y su tripulación |
+| `islas` | Islas del mundo y su mar |
+| `viajes` | Registro de qué pirata visitó qué isla |
+| `combates` | Enfrentamientos entre piratas y ganador |
+| `recompensas` | Historial de recompensas por pirata |
+
+### Relaciones
+
+```
 piratas.tripulacion_id  ──►  tripulaciones.id
 viajes.pirata_id        ──►  piratas.id
 viajes.isla_id          ──►  islas.id
@@ -27,34 +44,51 @@ combates.pirata1_id     ──►  piratas.id
 combates.pirata2_id     ──►  piratas.id
 combates.ganador_id     ──►  piratas.id
 recompensas.pirata_id   ──►  piratas.id
-Datos insertados
-TablaMínimo requeridoInsertadosTripulaciones3✅ 3Piratas10✅ 10Islas5✅ 5Viajes15✅ 15Combates10✅ 10Recompensas10✅ 10
+```
 
-📋 Consultas implementadas
+### Datos insertados
 
-Piratas y su tripulación
-Pirata con mayor recompensa
-Número de combates ganados por pirata
-Isla más visitada
-Historial de recompensas por pirata
+| Tabla | Mínimo requerido | Insertados |
+|---|:---:|:---:|
+| Tripulaciones | 3 | ✅ 3 |
+| Piratas | 10 | ✅ 10 |
+| Islas | 5 | ✅ 5 |
+| Viajes | 15 | ✅ 15 |
+| Combates | 10 | ✅ 10 |
+| Recompensas | 10 | ✅ 10 |
 
+---
 
-📊 Análisis (pandas)
+## 📋 Consultas implementadas
 
-Promedio de recompensa por tripulación
-Ranking compuesto de piratas (recompensa 60% · victorias 30% · viajes 10%)
+1. Piratas y su tripulación
+2. Pirata con mayor recompensa
+3. Número de combates ganados por pirata
+4. Isla más visitada
+5. Historial de recompensas por pirata
 
+---
 
-📁 Archivos del repositorio
-ArchivoDescripciónonepiece_schema.sqlDDL completo: creación de tablas e inserción de datosonepiece_practica.pyScript Python con consultas y análisisresultados_consultas.txtOutput de las 5 consultas SQLresultados_analisis.txtOutput del análisis con pandaspractica_onepiece.docxDocumento de entrega completo
+## 📊 Análisis (pandas)
 
-▶️ Cómo ejecutar
-bash# Instalar dependencia
-pip install pandas
+- Promedio de recompensa por tripulación
+- Ranking compuesto de piratas *(recompensa 60% · victorias 30% · viajes 10%)*
 
-# Ejecutar (crea la BD automáticamente y muestra todos los resultados)
-python onepiece_practica.py
+---
 
-👥 Equipo
-Garcia Garcia Soria López Dana Paola
+## 📁 Archivos del repositorio
+
+| Archivo | Descripción |
+|---|---|
+| `onepiece_schema.sql` | DDL completo: creación de tablas e inserción de datos |
+| `onepiece_practica.py` | Script Python con consultas y análisis |
+| `resultados_consultas.txt` | Output de las 5 consultas SQL |
+| `resultados_analisis.txt` | Output del análisis con pandas |
+| `practica_onepiece.docx` | Documento de entrega completo |
+
+---
+
+## 👥 Equipo
+
+**Garcia Garcia Soria López Dana Paola**  
 Diseño de Bases de Datos — 2026-2
