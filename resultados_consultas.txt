@@ -1,0 +1,136 @@
+============================================================
+  ONE PIECE — RESULTADOS DE CONSULTAS SQL
+  Base de datos: onepiece.db (SQLite)
+============================================================
+
+
+═══ CONSULTA 1 · Piratas y su Tripulación ═══
+SQL:
+    SELECT p.nombre, p.edad, p.recompensa, t.nombre AS tripulacion, t.barco
+    FROM piratas p
+    JOIN tripulaciones t ON p.tripulacion_id = t.id
+    ORDER BY p.recompensa DESC;
+
+RESULTADO:
+         pirata  edad  recompensa      tripulacion          barco
+          Kaido    59  4611100000   Piratas Bestia     Onigashima
+Monkey D. Luffy    19  3000000000 Sombrero de Paja Thousand Sunny
+  Trafalgar Law    26  3000000000          Corazon     Polar Tang
+           King    47  1390000000   Piratas Bestia     Onigashima
+          Queen    56  1320000000   Piratas Bestia     Onigashima
+   Roronoa Zoro    21  1111000000 Sombrero de Paja Thousand Sunny
+ Vinsmoke Sanji    21  1032000000 Sombrero de Paja Thousand Sunny
+           Bepo    23   500000000          Corazon     Polar Tang
+          Usopp    19   200000000 Sombrero de Paja Thousand Sunny
+           Nami    20    66000000 Sombrero de Paja Thousand Sunny
+
+INTERPRETACION:
+- 10 piratas distribuidos en 3 tripulaciones.
+- Sombrero de Paja es la tripulacion mas numerosa (5 miembros).
+- Piratas Bestia domina en recompensas individuales (Kaido: 4,611,100,000 B).
+
+
+────────────────────────────────────────────────────────────
+
+═══ CONSULTA 2 · Pirata con Mayor Recompensa ═══
+SQL:
+    SELECT p.nombre, t.nombre AS tripulacion, p.recompensa
+    FROM piratas p
+    JOIN tripulaciones t ON p.tripulacion_id = t.id
+    ORDER BY p.recompensa DESC
+    LIMIT 1;
+
+RESULTADO:
+ pirata      tripulacion  recompensa
+  Kaido   Piratas Bestia  4611100000
+
+INTERPRETACION:
+- Kaido (Piratas Bestia) tiene la recompensa mas alta: 4,611,100,000 Berry.
+- Supera en 1,611,100,000 B a Luffy y Law (ambos con 3,000,000,000 B).
+
+
+────────────────────────────────────────────────────────────
+
+═══ CONSULTA 3 · Combates Ganados por Pirata ═══
+SQL:
+    SELECT p.nombre, COUNT(c.id) AS victorias
+    FROM piratas p
+    LEFT JOIN combates c ON c.ganador_id = p.id
+    GROUP BY p.id
+    ORDER BY victorias DESC;
+
+RESULTADO:
+         pirata  victorias
+Monkey D. Luffy          3
+   Roronoa Zoro          2
+           Nami          1
+ Vinsmoke Sanji          1
+  Trafalgar Law          1
+           Bepo          1
+           King          1
+          Usopp          0
+          Kaido          0
+          Queen          0
+
+INTERPRETACION:
+- Monkey D. Luffy lidera con 3 victorias.
+- Roronoa Zoro ocupa el 2do lugar con 2 victorias.
+- Kaido y Queen, a pesar de sus altas recompensas, no registran victorias en la BD.
+  (Sus combates fueron contra otros Piratas Bestia o no fueron registrados.)
+
+
+────────────────────────────────────────────────────────────
+
+═══ CONSULTA 4 · Isla Mas Visitada ═══
+SQL:
+    SELECT i.nombre, i.mar, COUNT(v.id) AS visitas
+    FROM islas i
+    JOIN viajes v ON v.isla_id = i.id
+    GROUP BY i.id
+    ORDER BY visitas DESC;
+
+RESULTADO:
+         isla        mar  visitas
+         Wano Grand Line        5
+    Dressrosa Grand Line        5
+Thriller Bark Grand Line        2
+  Enies Lobby Grand Line        2
+   Marineford Grand Line        1
+
+INTERPRETACION:
+- Wano y Dressrosa empatan en el primer lugar con 5 visitas cada una.
+- Marineford es la isla menos frecuentada (1 visita).
+- Todas las islas pertenecen a Grand Line, coherente con el universo One Piece.
+
+
+────────────────────────────────────────────────────────────
+
+═══ CONSULTA 5 · Historial de Recompensas por Pirata ═══
+SQL:
+    SELECT p.nombre, r.monto, r.fecha
+    FROM recompensas r
+    JOIN piratas p ON r.pirata_id = p.id
+    ORDER BY p.nombre, r.fecha;
+
+RESULTADO:
+         pirata      monto      fecha
+          Kaido 4611100000 2010-01-01
+Monkey D. Luffy  300000000 2016-01-01
+Monkey D. Luffy 1500000000 2019-06-01
+Monkey D. Luffy 3000000000 2022-01-01
+   Roronoa Zoro  320000000 2016-01-01
+   Roronoa Zoro 1111000000 2022-01-01
+  Trafalgar Law  500000000 2015-01-01
+  Trafalgar Law 3000000000 2022-01-01
+ Vinsmoke Sanji  177000000 2016-01-01
+ Vinsmoke Sanji 1032000000 2022-01-01
+
+INTERPRETACION:
+- Luffy tuvo el mayor crecimiento: de 300M a 3,000M Berry (+900% en 6 anos).
+- Trafalgar Law incremento x6 su recompensa entre 2015 y 2022.
+- Kaido mantiene su recompensa sin cambios desde 2010 (estabilidad de amenaza maxima).
+
+
+============================================================
+  FIN DE CONSULTAS
+============================================================

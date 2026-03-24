@@ -1,0 +1,91 @@
+============================================================
+  ONE PIECE — RESULTADOS DEL ANÁLISIS (pandas)
+  Parte 7 de la práctica
+============================================================
+
+
+═══ ANÁLISIS 1 · Promedio de Recompensa por Tripulación ═══
+
+Metodología:
+  - Se unieron las tablas piratas y tripulaciones.
+  - Se agrupó por tripulacion y se calcularon: count, mean, sum, max.
+  - Los valores de recompensa están en Berry (moneda del universo One Piece).
+
+RESULTADO:
+     tripulacion  miembros     promedio         total       maximo
+         Corazon         2  1,750,000,000  3,500,000,000  3,000,000,000
+  Piratas Bestia         3  2,440,366,667  7,321,100,000  4,611,100,000
+Sombrero de Paja         5  1,081,800,000  5,409,000,000  3,000,000,000
+
+INTERPRETACION:
+  ► Piratas Bestia tiene el MAYOR PROMEDIO (2,440,366,667 B) con solo 3 miembros.
+    Esto se explica porque incluye a Kaido, el pirata con la recompensa mas alta del mundo.
+
+  ► Corazon tiene el 2do promedio mas alto (1,750,000,000 B) con solo 2 miembros.
+    Law (3,000M) eleva significativamente el promedio de la tripulacion.
+
+  ► Sombrero de Paja tiene el promedio mas bajo (1,081,800,000 B) pero es la tripulacion
+    mas grande (5 miembros). Nami (66M) y Usopp (200M) bajan el promedio general,
+    aunque Luffy (3,000M) y Zoro (1,111M) sostienen la media.
+
+  ► En total de Berry acumulado, Piratas Bestia supera a las demas (7,321,100,000 B).
+
+
+────────────────────────────────────────────────────────────
+
+═══ ANÁLISIS 2 · Ranking de Piratas (puntuacion compuesta) ═══
+
+Metodología:
+  - Fuentes: tablas piratas, tripulaciones, combates, viajes.
+  - Normalizacion de cada dimension al rango [0, 1] dividiéndola por su valor maximo.
+  - Puntuacion compuesta:
+      score = (recompensa_norm * 0.60)
+            + (victorias_norm  * 0.30)
+            + (viajes_norm     * 0.10)
+  - La recompensa pesa mas (60%) por ser el indicador oficial de amenaza de la Marina.
+
+RESULTADO:
+rank             pirata       tripulacion  recompensa  victorias  viajes  puntuacion
+   1    Monkey D. Luffy  Sombrero de Paja  3,000,000,000     3       3      0.7904
+   2              Kaido    Piratas Bestia  4,611,100,000     0       0      0.6000
+   3      Trafalgar Law           Corazon  3,000,000,000     1       2      0.5570
+   4       Roronoa Zoro  Sombrero de Paja  1,111,000,000     2       3      0.4446
+   5     Vinsmoke Sanji  Sombrero de Paja  1,032,000,000     1       2      0.3010
+   6               King    Piratas Bestia  1,390,000,000     1       0      0.2809
+   7               Bepo           Corazon    500,000,000     1       1      0.1984
+   8               Nami  Sombrero de Paja     66,000,000     1       2      0.1753
+   9              Queen    Piratas Bestia  1,320,000,000     0       0      0.1718
+  10              Usopp  Sombrero de Paja    200,000,000     0       2      0.0927
+
+INTERPRETACION:
+  ► #1 Monkey D. Luffy (0.7904):
+    Aunque NO tiene la recompensa mas alta, su combinacion de 3 victorias y
+    3 islas visitadas lo posiciona como la MAYOR AMENAZA ACTIVA para la Marina.
+    Es el pirata mas activo y peligroso de la base de datos.
+
+  ► #2 Kaido (0.6000):
+    Tiene la recompensa mas alta del mundo (4,611M B), pero 0 victorias y 0 viajes
+    registrados en la BD. Su puntaje se sostiene solo por su brutal recompensa
+    (60% del peso). Un pirata poderoso pero estatico segun los datos.
+
+  ► #3 Trafalgar Law (0.5570):
+    Equilibrio entre recompensa alta (3,000M), 1 victoria y 2 viajes. Amenaza
+    constante y versatil.
+
+  ► #4 Roronoa Zoro (0.4446):
+    Destaca en victorias (2) y viajes (3) a pesar de una recompensa menor.
+    Perfil de combatiente activo de campo.
+
+  ► #9 Queen (0.1718):
+    A pesar de su recompensa de 1,320M, su inactividad total en la BD
+    (0 victorias, 0 viajes) lo hunde en el ranking compuesto.
+
+  ► Observacion general:
+    El ranking compuesto diverge significativamente del ranking por recompensa pura.
+    Kaido baja del #1 al #2, y Queen del #5 al #9. Esto sugiere que la
+    recompensa sola no refleja la actividad real de un pirata.
+
+
+============================================================
+  FIN DEL ANÁLISIS
+============================================================
